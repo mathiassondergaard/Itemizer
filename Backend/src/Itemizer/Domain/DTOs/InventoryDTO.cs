@@ -1,7 +1,4 @@
-﻿using Itemizer.Domain.Entities;
-using System;
-
-namespace Itemizer.Domain.DTOs
+﻿namespace Itemizer.Domain.DTOs
 {
     public class InventoryDTO
     {
@@ -9,9 +6,7 @@ namespace Itemizer.Domain.DTOs
         public int Quantity { get; set; }
         public int MinimumQuantity { get; set; }
         public int MaximumQuantity { get; set; }
-
         public int ReorderPoint { get; set; }
-
         public ItemDTO Item { get; set; }
     }
 }

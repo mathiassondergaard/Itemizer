@@ -1,15 +1,10 @@
-﻿using System;
-
-namespace Itemizer.Domain.DTOs
+﻿namespace Itemizer.Domain.Entities
 {
-    public class ItemDTO
+    public class Item : Entity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string SKU { get; set; }
-
         public string BarCode { get; set; }
-
         public int ReorderQuantity { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Itemizer.Domain.Repositories;
+
 namespace Itemizer.Domain;
 
 public interface IUnitOfWork : IDisposable

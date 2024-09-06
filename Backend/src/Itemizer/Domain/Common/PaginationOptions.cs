@@ -1,8 +1,7 @@
-﻿namespace Itemizer.Domain.Common
+﻿namespace Itemizer.Domain.Common;
+
+public class PaginationOptions
 {
-    public class PaginationOptions
-    {
-        public int RowsToSkip { get; set; } = 0;
-        public int RowsToGet { get; set; } = 15;
-    }
+    public int RowsToSkip { get; set; } = 0;
+    public int RowsToGet { get; set; } = 15;
 }

@@ -1,8 +1,7 @@
 ﻿using Itemizer.Domain.Entities;
 
-namespace Itemizer.Domain.Repositories
+namespace Itemizer.Domain.Repositories;
+
+public interface IItemRepository : IRepository<Item>
 {
-    public interface IItemRepository : IRepository<Item>
-    {
-    }
 }

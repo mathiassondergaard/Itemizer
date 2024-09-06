@@ -1,7 +1,6 @@
-﻿namespace Itemizer.Domain.Entities
+﻿namespace Itemizer.Domain.Entities;
+
+public class Entity
 {
-    public class Entity
-    {
-        public int Id { get; set; }
-    }
+    public int Id { get; set; }
 }

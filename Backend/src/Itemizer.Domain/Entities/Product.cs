@@ -1,21 +1,25 @@
 ﻿using Itemizer.Domain.Entities.Interfaces;
 
 namespace Itemizer.Domain.Entities;
-public class Product : Entity
+public class Product : IEntity<ProductId>
 {
-    public string Name { get; set; }
+    public ProductId Id => throw new NotImplementedException();
 
-    public int ReorderQuantity { get; set; }
+    public string Name { get; private set; }
 
-    public string SKU { get; set; }
+    public int ReorderQuantity { get; private set; }
 
-    public string Barcode { get; set; }
+    public string SKU { get; private set; }
 
-    public Brand Brand { get; set; } = null!;
+    public string Barcode { get; private set; }
 
-    public Type Type { get; set; } = null!;
+    public Brand Brand { get; private set; } = null!;
+
+    public Type Type { get; private set; } = null!;
 
     public ICollection<Inventory> Inventories { get; } = new List<Inventory>();
 
     public ICollection<ProductField> Fields { get; } = new List<ProductField>();
 }
+
+public readonly record struct ProductId(Guid Value);

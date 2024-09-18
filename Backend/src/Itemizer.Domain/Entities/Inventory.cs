@@ -1,15 +1,18 @@
 ﻿using Itemizer.Domain.Entities.Interfaces;
 
 namespace Itemizer.Domain.Entities;
-public class Inventory : Entity
+public class Inventory : IEntity<InventoryId>
 {
-    public Product Product { get; set; } = null!;
+    public InventoryId Id { get; private set; }
+    public Product Product { get; private set; } = null!;
 
-    public int Stock { get; set; }
+    public int Stock { get; private set; }
 
-    public int MinimumStock { get; set; }
+    public int MinimumStock { get; private set; }
 
-    public int MaximumStock { get; set; }
+    public int MaximumStock { get; private set; }
 
-    public int ReorderPoint {  get; set; }
+    public int ReorderPoint {  get; private set; }
 }
+
+public readonly record struct InventoryId(Guid Value);

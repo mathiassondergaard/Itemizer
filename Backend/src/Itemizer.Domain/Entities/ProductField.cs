@@ -1,11 +1,15 @@
 ﻿using Itemizer.Domain.Entities.Interfaces;
 
 namespace Itemizer.Domain.Entities;
-public class ProductField : Entity
+public class ProductField : IEntity<ProductFieldId>
 {
-    public string Value { get; set; }
+    public ProductFieldId Id { get; private set; }
 
-    public TypeField TypeField { get; set; } = null!;
+    public string Value { get; private set; }
 
-    public Product Product { get; set; } = null!;
+    public TypeField TypeField { get; private set; } = null!;
+
+    public Product Product { get; private set; } = null!;
 }
+
+public readonly record struct ProductFieldId(Guid Value);

@@ -1,5 +1,5 @@
 ﻿namespace Itemizer.Domain.Entities.Interfaces;
-public class Entity
+public interface IEntity<TId>
 {
-    public int Id { get; set; }
+    TId Id { get; }
 }

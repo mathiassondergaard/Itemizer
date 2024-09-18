@@ -4,16 +4,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{263980AF-7B8C-4EB8-9B12-8A229390F648}"
-	ProjectSection(SolutionItems) = preProject
-		settings.json = settings.json
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FBBB7142-C1A6-4AB4-9589-CEEBB2CC4330}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Itemizer", "src\Itemizer\Itemizer.csproj", "{E23944CA-8C71-4D85-A01C-33126E31F39B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itemizer.Domain", "src\Itemizer.Domain\Itemizer.Domain.csproj", "{4CB0D626-9C99-4C34-BF6B-7702F57D4163}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itemizer.Infra", "src\Itemizer.Infra\Itemizer.Infra.csproj", "{2FC69AEC-EC3A-4076-8AA2-30343B555FE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itemizer.Application", "src\Itemizer.Application\Itemizer.Application.csproj", "{DBBFC952-BD4E-4CB5-A86E-9B254E6DC918}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itemizer.Web", "src\Itemizer.Web\Itemizer.Web.csproj", "{1121C159-713A-4A23-93ED-7EBEEA0124E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,16 +25,31 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E23944CA-8C71-4D85-A01C-33126E31F39B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E23944CA-8C71-4D85-A01C-33126E31F39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E23944CA-8C71-4D85-A01C-33126E31F39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E23944CA-8C71-4D85-A01C-33126E31F39B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CB0D626-9C99-4C34-BF6B-7702F57D4163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CB0D626-9C99-4C34-BF6B-7702F57D4163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CB0D626-9C99-4C34-BF6B-7702F57D4163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CB0D626-9C99-4C34-BF6B-7702F57D4163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FC69AEC-EC3A-4076-8AA2-30343B555FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FC69AEC-EC3A-4076-8AA2-30343B555FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FC69AEC-EC3A-4076-8AA2-30343B555FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FC69AEC-EC3A-4076-8AA2-30343B555FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBBFC952-BD4E-4CB5-A86E-9B254E6DC918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBBFC952-BD4E-4CB5-A86E-9B254E6DC918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBBFC952-BD4E-4CB5-A86E-9B254E6DC918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBBFC952-BD4E-4CB5-A86E-9B254E6DC918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1121C159-713A-4A23-93ED-7EBEEA0124E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1121C159-713A-4A23-93ED-7EBEEA0124E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1121C159-713A-4A23-93ED-7EBEEA0124E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1121C159-713A-4A23-93ED-7EBEEA0124E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E23944CA-8C71-4D85-A01C-33126E31F39B} = {263980AF-7B8C-4EB8-9B12-8A229390F648}
+		{4CB0D626-9C99-4C34-BF6B-7702F57D4163} = {263980AF-7B8C-4EB8-9B12-8A229390F648}
+		{2FC69AEC-EC3A-4076-8AA2-30343B555FE0} = {263980AF-7B8C-4EB8-9B12-8A229390F648}
+		{DBBFC952-BD4E-4CB5-A86E-9B254E6DC918} = {263980AF-7B8C-4EB8-9B12-8A229390F648}
+		{1121C159-713A-4A23-93ED-7EBEEA0124E5} = {263980AF-7B8C-4EB8-9B12-8A229390F648}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {64422659-F175-440B-BB16-F80AE960DFF5}

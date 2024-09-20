@@ -17,7 +17,7 @@ public interface IUnitOfWork : IDisposable
     /// <summary>
     /// Saves changes to the data source asynchronously, with possibility of cancelling thread. 
     /// </summary>
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+    Task<int> SaveChangesAsync(CancellationToken token);
 
     /// <summary>
     /// Commits the changes to the database

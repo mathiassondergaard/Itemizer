@@ -1,12 +1,14 @@
-﻿using Itemizer.Domain.Entities; //Must be referenced
-using Microsoft.EntityFrameworkCore; // Add via NuGet
+﻿using Itemizer.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace Itemizer.Infrastructure.Database;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    //public DbSet<Entity> Entities { get; set; }
+    public DbSet<Brand> Brands { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Product> Products { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

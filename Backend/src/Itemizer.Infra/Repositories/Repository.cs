@@ -6,9 +6,9 @@ using Itemizer.Infra.Helpers;
 using Itemizer.Infrastructure.Database;
 
 namespace Itemizer.Infra.Repositories;
-public class Repository<TEntity, TId>(AppDbContext context) : IRepository<TEntity, TId> where TEntity : class, IEntity<TId>
+public class Repository<TEntity, TId>(AppDbContext dbContext) : IRepository<TEntity, TId> where TEntity : class, IEntity<TId>
 {
-    protected readonly DbSet<TEntity> _dbSet = context.Set<TEntity>();
+    protected readonly DbSet<TEntity> _dbSet = dbContext.Set<TEntity>();
 
     public async Task AddAsync(TEntity entity) => await _dbSet.AddAsync(entity);
 

@@ -1,4 +1,6 @@
-﻿namespace Itemizer.Infrastructure.Database;
+﻿using Microsoft.Extensions.Logging;
+
+namespace Itemizer.Infrastructure.Database;
 
 public class AppDbContextInit(AppDbContext context, ILoggerFactory logger)
 {

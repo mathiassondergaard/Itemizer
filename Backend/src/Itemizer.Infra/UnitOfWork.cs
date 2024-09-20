@@ -1,56 +1,112 @@
 ﻿using Itemizer.Domain;
 using Itemizer.Domain.Repositories;
+using Itemizer.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Itemizer.Infrastructure;
 
 public class UnitOfWork : IUnitOfWork
 {
     private bool _disposed;
+    private IDbContextTransaction? _transaction;
 
+    private readonly AppDbContext _dbContext;
+
+    // Maybe inject these via. extension?
     public IBrandRepository BrandRepository => throw new NotImplementedException();
 
     public ICategoryRepository CategoryRepository => throw new NotImplementedException();
 
     public IProductRepository ProductRepository => throw new NotImplementedException();
 
-    public void BeginTransaction()
-    {
-        throw new NotImplementedException();
-    }
+    public void BeginTransaction() => _transaction = _dbContext.Database.BeginTransaction();
+
+    public int SaveChanges() => _dbContext.SaveChanges();
+
+    public async Task<int> SaveChangesAsync(CancellationToken token) => await _dbContext.SaveChangesAsync(token);
 
     public void CommitChanges()
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (_transaction == null) throw new NullReferenceException();
+
+            _dbContext.SaveChanges();
+            _transaction.Commit();
+        }
+        finally
+        {
+            _transaction?.Dispose();
+            _transaction = null;
+        }
     }
 
-    public Task CommitChangesAsync(CancellationToken token)
+    public async Task CommitChangesAsync(CancellationToken token)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (_transaction == null) throw new NullReferenceException();
+
+            await _dbContext.SaveChangesAsync(token);
+            _transaction.Commit();
+
+        }
+        finally
+        {
+            _transaction?.Dispose();
+            _transaction = null;
+        }
     }
 
-    public Task ExecuteTransactionAsync(Action action, CancellationToken token)
+    public async Task ExecuteTransactionAsync(Action action, CancellationToken token)
     {
-        throw new NotImplementedException();
+        using var transaction = await _dbContext.Database.BeginTransactionAsync(token);
+        
+        try
+        {
+            action();
+            await _dbContext.SaveChangesAsync(token);
+            await transaction.CommitAsync(token);
+        } 
+        catch (Exception)
+        {
+            await transaction.RollbackAsync(token);
+            // maybe throw custom transactionCouldntBeExecuted exception
+        }
+        finally
+        {
+            transaction.Dispose();
+        }
     }
 
-    public Task ExecuteTransactionAsync(Func<Task> action, CancellationToken token)
+    public async Task ExecuteTransactionAsync(Func<Task> action, CancellationToken token)
     {
-        throw new NotImplementedException();
+        using var transaction = await _dbContext.Database.BeginTransactionAsync(token);
+
+        try
+        {
+            await action();
+            await _dbContext.SaveChangesAsync(token);
+            await transaction.CommitAsync(token);
+        }
+        catch (Exception)
+        {
+            await transaction.RollbackAsync(token);
+            // maybe throw custom transactionCouldntBeExecuted exception
+        }
+        finally
+        {
+            transaction.Dispose();
+        }
     }
 
     public void Rollback()
     {
-        throw new NotImplementedException();
-    }
+        if (_transaction == null) throw new NullReferenceException();
 
-    public int SaveChanges()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
+        _transaction.Rollback();
+        _transaction?.Dispose();
+        _transaction= null;
     }
 
     protected virtual void Dispose(bool disposing)
@@ -59,7 +115,8 @@ public class UnitOfWork : IUnitOfWork
         {
             if (disposing)
             {
-                // TODO: dispose managed state (managed objects)
+                _transaction?.Dispose();
+                _dbContext.Dispose();
             }
 
             _disposed = true;
@@ -73,5 +130,3 @@ public class UnitOfWork : IUnitOfWork
         GC.SuppressFinalize(this);
     }
 }
-
-// TWO REPOS? I READABBLE IUPDATEABLE

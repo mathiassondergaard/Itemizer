@@ -15,9 +15,9 @@ public class Product : IEntity<ProductId>
 
     public Brand Brand { get; private set; } = null!;
 
-    public Type Type { get; private set; } = null!;
+    public Category Category { get; private set; } = null!;
 
-    public ICollection<Inventory> Inventories { get; } = new List<Inventory>();
+    public Stock Stock { get; private set; } = null!;
 
     public ICollection<ProductField> Fields { get; } = new List<ProductField>();
 }

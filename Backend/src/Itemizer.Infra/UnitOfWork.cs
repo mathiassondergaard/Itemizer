@@ -7,8 +7,11 @@ public class UnitOfWork : IUnitOfWork
 {
     private bool _disposed;
 
-    public IItemRepository ItemRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public IInventoryRepository InventoryRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public IBrandRepository BrandRepository => throw new NotImplementedException();
+
+    public ICategoryRepository CategoryRepository => throw new NotImplementedException();
+
+    public IProductRepository ProductRepository => throw new NotImplementedException();
 
     public void BeginTransaction()
     {
@@ -70,3 +73,5 @@ public class UnitOfWork : IUnitOfWork
         GC.SuppressFinalize(this);
     }
 }
+
+// TWO REPOS? I READABBLE IUPDATEABLE

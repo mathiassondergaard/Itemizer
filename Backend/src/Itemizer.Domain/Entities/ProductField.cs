@@ -7,8 +7,6 @@ public class ProductField : IEntity<ProductFieldId>
 
     public string Value { get; private set; }
 
-    public TypeField TypeField { get; private set; } = null!;
-
     public Product Product { get; private set; } = null!;
 }
 

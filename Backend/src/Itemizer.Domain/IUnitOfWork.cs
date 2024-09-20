@@ -4,7 +4,9 @@ namespace Itemizer.Domain;
 
 public interface IUnitOfWork : IDisposable
 {
-    //InterfaceRepositoryName IRepositoryName { get; set; }
+    IBrandRepository BrandRepository { get; }
+    ICategoryRepository CategoryRepository { get; }
+    IProductRepository ProductRepository { get; }
 
     /// <summary>
     /// Saves changes to the database

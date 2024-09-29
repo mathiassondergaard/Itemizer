@@ -3,5 +3,5 @@
 namespace Itemizer.Domain.Repositories;
 public interface IProductRepository : IRepository<Product, ProductId>
 {
-    // Manages Product, ProductField, Stock
+    // Manages Product, ProductAttributes, Stock
 }

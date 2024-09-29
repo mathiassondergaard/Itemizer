@@ -37,10 +37,5 @@ public class Repository<TEntity, TId>(AppDbContext dbContext) : IRepository<TEnt
 
     public async Task<int> CountAsync(IEnumerable<Expression<Func<TEntity, bool>>> predicates) => await _dbSet.WhereAny(predicates).CountAsync();
 
-    public Task<TEntity?> FirstOrDefault(Expression<Func<TEntity, bool>> predicates, IEnumerable<string> includedEntities) => _dbSet.IncludeEntities(includedEntities).FirstOrDefaultAsync(predicates);
+    public Task<TEntity?> GetByPredicate(Expression<Func<TEntity, bool>> predicates, IEnumerable<string> includedEntities) => _dbSet.IncludeEntities(includedEntities).FirstOrDefaultAsync(predicates);
 }
-// COMMIT 
-// BEFORE
-// NEXT
-// WORK
-// PLEASE!!!

@@ -4,7 +4,6 @@ namespace Itemizer.Domain;
 
 public interface IUnitOfWork : IDisposable
 {
-    IBrandRepository BrandRepository { get; }
     ICategoryRepository CategoryRepository { get; }
     IProductRepository ProductRepository { get; }
 

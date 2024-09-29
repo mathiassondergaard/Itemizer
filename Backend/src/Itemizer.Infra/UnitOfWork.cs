@@ -12,9 +12,7 @@ public class UnitOfWork : IUnitOfWork
 
     private readonly AppDbContext _dbContext;
 
-    // Maybe inject these via. extension?
-    public IBrandRepository BrandRepository => throw new NotImplementedException();
-
+    // Maybe inject these via. extension?S
     public ICategoryRepository CategoryRepository => throw new NotImplementedException();
 
     public IProductRepository ProductRepository => throw new NotImplementedException();

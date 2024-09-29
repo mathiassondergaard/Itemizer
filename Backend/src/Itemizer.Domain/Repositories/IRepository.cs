@@ -24,5 +24,5 @@ public interface IRepository<TEntity, TId> where TEntity : IEntity<TId>
 
     /// <param name="predicates">Condition(s) to satisfy on query</param>
     /// <param name="includedEntities">Child entity(ies) to include</param>
-    Task<TEntity?> FirstOrDefault(Expression<Func<TEntity, bool>> predicates, IEnumerable<string> includedEntities);
+    Task<TEntity?> GetByPredicate(Expression<Func<TEntity, bool>> predicates, IEnumerable<string> includedEntities);
 }

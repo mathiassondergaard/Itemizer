@@ -1,4 +1,6 @@
 ﻿using Itemizer.Domain.Entities.Core;
+using Itemizer.Domain.Exceptions;
+using Itemizer.Domain.Services;
 
 namespace Itemizer.Domain.Entities.ProductAggregate;
 public class ProductVariant : Entity<ProductVariantId>
@@ -14,15 +16,15 @@ public class ProductVariant : Entity<ProductVariantId>
 
     public IReadOnlyCollection<ProductProperty> Properties => _properties.AsReadOnly();
 
-    public ProductVariant(ProductVariantId productVariantId, string name, SKU sku, List<ProductProperty> properties)
+    public ProductVariant(Product product, string name, SKU sku, List<ProductProperty> properties)
     {
-        ProductVariantId = productVariantId;
+        ProductVariantId = new ProductVariantId(new Guid());
         Name = name;
         SKU = sku;
         _properties = properties ?? new List<ProductProperty>();
     }
 
-    public void AddProperty(ProductProperty property)
+    public void AddOrUpdateProperty(ProductProperty property, IProductVariantService _productVariantService)
     {
         var existingProperty = _properties.SingleOrDefault(p => p.Name.Equals(property.Name, StringComparison.OrdinalIgnoreCase));
 
@@ -34,10 +36,15 @@ public class ProductVariant : Entity<ProductVariantId>
         _properties.Add(property);
     }
 
-    private void ValidateProperty(Category category)
+    public void RemoveProperty(ProductProperty property)
     {
-        // loop properties of category
-        // if property is not found or null, throw property exception
-        // additional validation on type? (maybe)
+        var existingProperty = _properties.SingleOrDefault(p => p.Name.Equals(property.Name, StringComparison.OrdinalIgnoreCase));
+
+        if (existingProperty == null)
+        {
+            throw new DomainException("Property" + property.Name + "does not exist on variant!");
+        }
+
+        _properties.Remove(existingProperty);
     }
 }
